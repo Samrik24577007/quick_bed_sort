@@ -1,0 +1,7 @@
+I created dataframes for metadata, sample and standard_selection file . In sample file we store how many runs we have under a sample, in metadata we stored the path of each run and in standard_selection we stored the order in which we want to sort the chromosome.
+We define a function get_all_runs_for_a_sample that returns the file_paths of the runs.
+We created a list called chrom_selection that contains the list of chromosomes in order that I need to sort
+In rule splitting bed file, we take the inputs of chromosome list and file_paths of different runs under sample X. While in the output it contains all the chromosome files in order splitted from the bed files. 
+The scripts file split_bed.sh first takes input as chromosome name one by one in order. While reading chromosome name it takes the bed files one by one and reads their line one by one. Checks if the 1st column of the line matches with the chromosome name and if matches adds the line to the corresponding chromosome file.
+
+In the rule sorting_bed_file, we take the output of previous rule as inputs that are chromosome files, sort them individually and merge them sequentially in a file to get the output file X_sorted.bed where X is the name of the variable sample. The merge_sorted_chr.sh scripts takes the input files and generate the output. It takes the input chromosome files in order one by one and sort the 2nd and 3rd columns in the file with priority for the 2nd column. After sorting ecah file we put them in final output file.  
